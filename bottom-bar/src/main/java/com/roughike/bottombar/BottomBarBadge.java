@@ -110,7 +110,7 @@ class BottomBarBadge extends TextView {
         setBackgroundCompat(backgroundCircle);
     }
 
-    private void wrapTabAndBadgeInSameContainer(final BottomBarTab tab) {
+    void wrapTabAndBadgeInSameContainer(final BottomBarTab tab) {
         ViewGroup tabContainer = (ViewGroup) tab.getParent();
         tabContainer.removeView(tab);
 

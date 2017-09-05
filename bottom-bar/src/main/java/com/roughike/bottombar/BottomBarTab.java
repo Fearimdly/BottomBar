@@ -49,7 +49,7 @@ public class BottomBarTab extends LinearLayout {
     private final int sixteenDps;
 
     @VisibleForTesting
-    BottomBarBadge badge;
+    BottomBarBadgeExtension badge;
 
     private Type type = Type.FIXED;
     private boolean isTitleless;
@@ -327,7 +327,7 @@ public class BottomBarTab extends LinearLayout {
         }
 
         if (badge == null) {
-            badge = new BottomBarBadge(getContext());
+            badge = new BottomBarBadgeExtension(getContext());
             badge.attachToTab(this, badgeBackgroundColor);
         }
 

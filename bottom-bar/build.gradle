@@ -1,5 +1,6 @@
 apply plugin: 'com.android.library'
 apply plugin: 'com.github.kt3k.coveralls'
+apply plugin: 'maven-publish'
 
 ext {
     bintrayRepo = 'maven'
@@ -172,6 +173,30 @@ if (localProps.exists()) {
                     passphrase = properties.getProperty("bintray.gpg.password")
                     //Optional. The passphrase for GPG signing'
                 }
+            }
+        }
+    }
+}
+
+apply from: '../publish.gradle'
+
+publishing {
+    publications {
+        base(MavenPublication) {
+            groupId 'com.worktile'
+            artifactId 'bottom-bar'
+            version '1.0.0'
+            artifact(sourceJar)
+            artifact("$buildDir/outputs/aar/bottom-bar-release.aar")
+            generatePom(pom)
+        }
+    }
+    repositories {
+        maven {
+            url "s3://worktile-maven"
+            credentials(AwsCredentials) {
+                accessKey AWS_ACCESS_KEY
+                secretKey AWS_SECRET_KEY
             }
         }
     }

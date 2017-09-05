@@ -18,6 +18,13 @@ buildscript {
 allprojects {
     repositories {
         jcenter()
+        maven {
+            url "s3://worktile-maven"
+            credentials(AwsCredentials) {
+                accessKey AWS_ACCESS_KEY
+                secretKey AWS_SECRET_KEY
+            }
+        }
     }
 }
 
@@ -28,7 +35,7 @@ task clean(type: Delete) {
 ext {
     compileSdkVersion = 25
     buildToolsVersion = "25.0.2"
-    minSdkVersion = 11
+    minSdkVersion = 16
     targetSdkVersion = 25
     supportLibraryVersion = "25.3.0"
 
